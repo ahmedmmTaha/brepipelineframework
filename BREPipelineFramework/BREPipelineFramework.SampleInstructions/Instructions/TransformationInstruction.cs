@@ -8,6 +8,7 @@ using BREPipelineFramework.Helpers;
 using Microsoft.BizTalk.Streaming;
 using BREPipelineFramework.Helpers.Tracing;
 using Microsoft.BizTalk.Component;
+using Microsoft.XLANGs.BaseTypes;
 
 namespace BREPipelineFramework.SampleInstructions.Instructions
 {
@@ -89,7 +90,7 @@ namespace BREPipelineFramework.SampleInstructions.Instructions
             {
                 XPathDocument input = new XPathDocument(inmsg.BodyPart.GetOriginalDataStream());
                 pc.ResourceTracker.AddResource(input);
-                dynamic transform = transformMetaData.Transform;
+                ITransform transform = transformMetaData.Transform;
                 Stream output = new VirtualStream();
 
                 TraceManager.PipelineComponent.TraceInfo("{0} - Applying transformation {1} to the message", callToken, mapName);
